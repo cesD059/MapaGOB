@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo</title>
+    <link rel="stylesheet" href="stylegob.css">
+    <link rel="icon" href="img/logogob.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar d-flex flex-column align-items-center">
+        <img src="img/Logo AGN blanco new.png" alt="Logo" class="mx-auto">
+        <div class="nav-buttons">
+            <button onclick="mostrarOcultar('tarjeta1')">Conmemoraciones</button>
+            <button onclick="mostrarOcultar('tarjeta2')">Danzas</button>
+            <button onclick="mostrarOcultar('tarjeta3')">Festivales</button>
+            <button onclick="mostrarOcultar('tarjeta4')">Fiestas Patronales</button>
+            <button onclick="mostrarOcultar('tarjeta5')">Tradiciones</button>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Meses Festivos</a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">ENERO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('conmemoraciones')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('danzas')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('festivales')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('fiestaspatronales')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('tradiciones')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">FEBRERO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">MARZO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">ABRIL</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">MAYO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">JUNIO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">JULIO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">AGOSTO</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">SEPTIEMBRE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">OCTUBRE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">NOVIEMBRE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                        <a class="dropdown-item dropdown-toggle" href="#">DICIEMBRE</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu1')">CONMEMORACIONES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu2')">DANZAS</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu3')">FESTIVALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu4')">FIESTAS PATRONALES</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarEventosPorCategoria('submenu5')">TRADICIONES</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="nav-links">
+        <div class="nav">
+            <div id="tarjeta1" class="card-descriptiva">
+                <button class="btn-close" onclick="cerrarTarjeta('tarjeta1')">&times;</button>
+                <h3>Conmemoraciones</h3>
+                <p>Las conmemoraciones a desarrollar en El Salvador hace referencia al acto y resultado de conmemorar: celebrar un aniversario, recordar a alguien o algo de manera solemne, dicho evento se suele llevar a cabo para mantener viva la memoria sobre determinados acontecimientos históricos de nuestro país.</p>
+                <br>
+                <p>Eventos conmemorativos de El Salvador:</p>
+                <ul>
+                    <li>Festividades en honor a nuestro Divino Señor de los Milagros.</li>
+                    <li>Día del Sol Nuevo (Los Tapujiados).</li>
+                    <li>Aniversario de la masacre de 1932.</li>
+                    <li>Día de la República.</li>
+                    <li>Día Internacional de la Lengua Materna y de la Lengua Nahuat.</li>
+                    <li>Día conmemorativo de la muerte de Dr. José Simeon Cañas.</li>
+                    <li>Día Nacional de la Poesía.</li>
+                </ul>
+            </div>
+            <div id="tarjeta2" class="card-descriptiva">
+                <button class="btn-close" onclick="cerrarTarjeta('tarjeta2')">&times;</button>
+                <h3>Danzas</h3>
+                <p>Danzas de El Salvador, o sus expresiones culturales populares, comparte rasgos con la región mesoamericana. El Salvador; la presencia de las civilizaciones ancestrales de los mayas, toltecas, nahuas (entre otras), dejaron su presencia en muchos de los aspectos de la vida cotidiana de la región. En la actualidad el resultado de toda esa mezcla original hispana y prehispánica son sus Danzas.</p>
+                <br>
+                <p>Danzas de El Salvador:</p>
+                <ul>
+                    <li>El Baile de los Diablitos.</li>
+                    <li>Los Pastores.</li>
+                    <li>Historiantes, San Antonio Abad.</li>
+                    <li>Los Emplumados de Cacaopera.</li>
+                    <li>Baile del Toro.</li>
+                    <li>Viejos Enmascarados.</li>
+                    <li>Torito Pinto.</li>
+                </ul>
+            </div>
+            <div id="tarjeta3" class="card-descriptiva">
+                <button class="btn-close" onclick="cerrarTarjeta('tarjeta3')">&times;</button>
+                <h3>Festivales</h3>
+                <p>Los festivales de El Salvador se caracterizan por ser celebrados con gran alegría y esmero. Existen variedad de festivales con diferentes temáticas enfocadas en el entretenimiento. Para estas ocasiones los salvadoreños asisten con familiares y amigos para divertirse.</p>
+                <br>
+                <p>Festivales de El Salvador:</p>
+                <ul>
+                    <li>Festival del Café.</li>
+                    <li>Festival del Marañón.</li>
+                    <li>Festival del Jocote.</li>
+                    <li>Festival de Altares de la Cruz.</li>
+                    <li>Festival del Chorizo.</li>
+                    <li>Festival del Barro.</li>
+                    <li>Festival del Dulce Artesanal.</li>
+                </ul>
+            </div>
+            <div id="tarjeta4" class="card-descriptiva">
+                <button class="btn-close" onclick="cerrarTarjeta('tarjeta4')">&times;</button>
+                <h3>Fiestas Patronales</h3>
+                <p>Las fiestas patronales son el conjunto de solemnidades con que una población celebra anualmente una fecha importante, estas festividades se trata de una tradición implementada, esencialmente, en los países de cultura hispana. El Salvador celebra estas fiestas a lo grande, con música, fuegos artificiales, desfiles y personajes de folclore salvadoreño.</p>
+                <br>
+                <p>Fiestas Patronales de El Salvador:</p>
+                <ul>
+                    <li>Fiesta P. a San Esteban Mártir.</li>
+                    <li>Fiesta P. Divino Señor de los Milagros.</li>
+                    <li>Fiesta P. en honor al Cristo Negro.</li>
+                    <li>Fiesta P. en honor a la Virgen de Candelaria.</li>
+                    <li>Fiesta P. en honor a la Virgen del Tránsito.</li>
+                    <li>Fiesta P. en honor a la Inmaculada Concepción.</li>
+                    <li>Fiesta P. en honor a Nuestro Divino Salvador del Mundo.</li>
+                </ul>
+            </div>
+            <div id="tarjeta5" class="card-descriptiva">
+                <button class="btn-close" onclick="cerrarTarjeta('tarjeta5')">&times;</button>
+                <h3>Tradiciones</h3>
+                <p>Las tradiciones son aquellas que se transmiten de generación en generación. En el territorio salvadoreño las tradiciones son las fiestas patronales de los diferentes pueblos, además de bailes, música, comida típica, etc.</p>
+                <br>
+                <p>Tradiciones de El Salvador:</p>
+                <ul>
+                    <li>Baile de los Historiantes.</li>
+                    <li>Día de los Reyes Magos.</li>
+                    <li>Baile del Toro.</li>
+                    <li>Miércoles de Ceniza: Huevos Chimbos.</li>
+                    <li>Bolas de Fuego.</li>
+                    <li>Día de los Farolitos.</li>
+                    <li>Carnaval de San Miguel.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container flex-grow-1">
+        <h1>Mapa Cultural</h1>
+        <div id="mapa"></div>
+        <script src="mapa.js"></script>
+    </div>
+    <footer class="footer text-white mt-5">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-4 mb-4">
+                    <p>Dirección General del Archivo General de la Nación 1a Calle Poniente y Av. La Reforma, Centro de Gobierno
+                        <a href="https://www.google.com/maps?q=Archivo+General+de+la+Naci%C3%B3n,+San+Salvador,+El+Salvador" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                    </p>
+                    <p>San Salvador, El Salvador.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="img/MinisterioCultura.png" alt="Escudo" class="img-fluid">
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Enlaces de Interés</h4>
+                    <ul class="list-unstyled">
+                        <p>Teléfono: (503) 2271-1876</p>
+                    <div class="social-icons">
+                        <a href="https://web.facebook.com/miculturasv"><i class="bi bi-facebook"></i></a>
+                        <a href="https://x.com/culturasv?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.instagram.com/miculturasv/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.youtube.com/@SECULTURASV"><i class="bi bi-youtube"></i></a>
+                    </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <p>&copy; 2024 Archivo General de la Nación. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</body>
+</html>
